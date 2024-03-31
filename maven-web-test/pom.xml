@@ -2,7 +2,7 @@
     <parent>
         <artifactId>second-maven</artifactId>
         <groupId>com.gorbunov</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.gorbunov</groupId>
             <artifactId>maven-service-test</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>

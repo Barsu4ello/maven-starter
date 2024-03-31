@@ -5,7 +5,7 @@
 
     <groupId>com.gorbunov</groupId><!-- название конторы-->
     <artifactId>second-maven</artifactId><!-- название проекта -->
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <modules>
         <module>maven-db-test</module>
@@ -23,7 +23,7 @@
         <connection>scm:git:git@github.com:Barsu4ello/maven-starter.git</connection>
         <developerConnection>scm:git:git@github.com:Barsu4ello/maven-starter.git</developerConnection>
         <url>https://github.com/Barsu4ello/maven-starter</url>
-      <tag>second-maven-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
