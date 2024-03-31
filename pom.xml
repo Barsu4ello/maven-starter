@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gorbunov</groupId><!-- название конторы-->
+    <artifactId>second-maven</artifactId><!-- название проекта -->
+    <version>1.0.0</version>
+
+    <modules>
+        <module>maven-db-test</module>
+        <module>maven-service-test</module>
+        <module>maven-web-test</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <name>second-maven</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:Barsu4ello/maven-starter.git</connection>
+        <developerConnection>scm:git:git@github.com:Barsu4ello/maven-starter.git</developerConnection>
+        <url>https://github.com/Barsu4ello/maven-starter</url>
+    </scm>
+
+    <properties>
+        <app.end>dev</app.end>
+        <project.build.sourceEncoding>${}UTF-8</project.build.sourceEncoding>
+        <postgresql.version>42.3.5</postgresql.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>5.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13</version>
+<!--                <version>${junit.version}</version>-->
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-docker-files</id>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <phase>validate</phase>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/docker</directory>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>${project.basedir}/target</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>17</source>
+                        <target>17</target>
+                        <!-- скипаем тесты(саму goal maven-surefire-plugin:2.12.4:test )-->
+                        <!--      <skip>true</skip>-->
+                    </configuration>
+                    <!--        <executions>-->
+                    <!--          <execution>-->
+                    <!--            <goals>-->
+                    <!--              <goal>compile</goal>-->
+                    <!--            </goals>-->
+                    <!--&lt;!&ndash;            <phase>validate</phase>&ndash;&gt;-->
+                    <!--          </execution>-->
+                    <!--        </executions>-->
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.12.1</version>
+                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-project-info-reports-plugin</artifactId>-->
+<!--                    <version>3.4.5</version>-->
+<!--                </plugin>-->
+
+<!--                &lt;!&ndash;            <plugin>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <artifactId>maven-failsafe-plugin</artifactId>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <version>3.2.5</version>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <executions>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <execution>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <goals>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <goal>integration-test</goal>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <goal>verify</goal>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </goals>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </execution>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </executions>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <configuration>&ndash;&gt;-->
+<!--                &lt;!&ndash;&lt;!&ndash;                    <argLine>@{argLine} -Xmx4096m -XX:MaxPermSize=512M </argLine>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;                </configuration>&ndash;&gt;-->
+<!--                &lt;!&ndash;            </plugin>&ndash;&gt;-->
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                    <version>3.2.5</version>-->
+
+<!--                    <configuration>-->
+<!--                        &lt;!&ndash;                    <forkCount>0</forkCount>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <testFailureIgnore>true</testFailureIgnore>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <useSystemClassLoader>false</useSystemClassLoader>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash;                        <argLine>-Dfile.encoding=${project.build.sourceEncoding} ${argLine}</argLine>&lt;!&ndash;                            <destFile>C:/jacoco.exec</destFile>&ndash;&gt;&ndash;&gt;-->
+<!--                        <includes>-->
+<!--                            <include>-->
+<!--                                **/*Tes.java-->
+<!--                            </include>-->
+<!--                            <include>-->
+<!--                                **/*Test.java-->
+<!--                            </include>-->
+<!--                        </includes>-->
+<!--                        &lt;!&ndash;          <skip>true</skip>&ndash;&gt;-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <activation>
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--                <os>-->
+<!--                    <family>windows</family>-->
+<!--                </os>-->
+<!--                <jdk>17</jdk>-->
+<!--                <file>-->
+<!--                    <missing>${basedir}/pom.xml</missing>-->
+<!--                </file>-->
+                <property>
+                    <name>test.prob</name>
+                    <value>example1</value>
+                </property>
+            </activation>
+            <properties>
+                <app.env>prod</app.env>
+                <example>test</example>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <configuration>
+                            <debug>false</debug>
+                            <optimize>true</optimize>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://127.0.0.1:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+</project>

@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="web expoded">
+    <output-path>$PROJECT_DIR$/out/artifacts/web_expoded</output-path>
+    <root id="root">
+      <element id="module-output" name="maven-web-test" />
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.7.4" />
+        <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.7.4" />
+        <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:5.7.4" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.23" />
+        <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.23" />
+        <element id="library" level="project" name="Maven: jakarta.servlet:jakarta.servlet-api:5.0.0" />
+      </element>
+      <element id="javaee-facet-resources" facet="maven-web-test/web/Web" />
+    </root>
+  </artifact>
+</component>
