@@ -6,7 +6,7 @@
 
     <groupId>com.gorbunov</groupId><!-- название конторы-->
     <artifactId>second-maven</artifactId><!-- название проекта -->
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <modules>
         <module>maven-db-test</module>
@@ -66,8 +66,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.0</version>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M1</version>
             </plugin>
         </plugins>
         <pluginManagement>
